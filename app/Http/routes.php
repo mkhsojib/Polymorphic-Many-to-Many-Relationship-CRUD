@@ -38,3 +38,42 @@ Route::get('/create', function () {
     $video->tags()->save($tag2);
 
 });
+
+
+Route::get('/read', function () {
+
+    $post = Post::findOrFail(1);
+
+    foreach ($post->tags as $tag) {
+
+        echo $tag;
+    }
+
+});
+
+
+Route::get('/update', function () {
+
+    $post = Post::findOrFail(1);
+
+    foreach ($post->tags as $tag){
+
+
+       return $tag->whereName('laravel')->update(['name'=>'laravel with php']);
+
+
+    }
+
+
+    $post = Post::findOrFail(1);
+
+    $tag = Tag::find(2);
+
+    $post->tags()->save($tag);
+
+    $post->tags()->attach($tag);
+
+    $post->tags()->sync([1,2]);
+
+
+});
