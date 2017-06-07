@@ -56,10 +56,10 @@ Route::get('/update', function () {
 
     $post = Post::findOrFail(1);
 
-    foreach ($post->tags as $tag){
+    foreach ($post->tags as $tag) {
 
 
-       return $tag->whereName('laravel')->update(['name'=>'laravel with php']);
+        return $tag->whereName('laravel')->update(['name' => 'laravel with php']);
 
 
     }
@@ -73,7 +73,20 @@ Route::get('/update', function () {
 
     $post->tags()->attach($tag);
 
-    $post->tags()->sync([1,2]);
+    $post->tags()->sync([1, 2]);
+
+
+});
+
+
+Route::get('/delete', function () {
+
+    $post = Post::find(1);
+
+    foreach ($post->tags as $tag) {
+
+        $tag->whereId(2)->delete();
+    }
 
 
 });
